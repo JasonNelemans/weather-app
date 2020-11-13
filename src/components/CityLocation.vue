@@ -11,7 +11,6 @@
 
 <style lang="scss">
 .city-location {
-  /* Rectangle */
   position: absolute;
   width: 425px;
   height: 48px;

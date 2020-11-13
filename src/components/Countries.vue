@@ -2,6 +2,18 @@
   <div class="countries"></div>
 </template>
 
+<script lang="ts">
+import { mapState, mapActions, mapMutations } from 'vuex'
+export default {
+  mounted() {
+    this.fetchCountries()
+  },
+  methods: {
+    ...mapActions('countries', ['fetchCountries']),
+  },
+}
+</script>
+
 <style lang="scss">
 .countries {
   position: absolute;
