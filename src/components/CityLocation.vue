@@ -21,25 +21,38 @@
   background: #ffffff;
   border: 1px solid rgba(8, 21, 62, 0.05);
   border-radius: 6px;
+}
 
-  .input-text {
-    border: none;
-    position: absolute;
-    width: 299px;
-    height: 30px;
-    left: 17px;
-    top: 9px;
+.city-location:hover {
+  border: 1px solid #b5c7ff;
+}
 
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 21px;
-    display: flex;
-    align-items: center;
+.city-location:focus-within {
+  border: 2px solid #b5c7ff;
+}
 
-    color: #08153e;
+.input-text {
+  border: none;
+  position: absolute;
+  width: 299px;
+  height: 30px;
+  left: 17px;
+  top: 9px;
 
-    opacity: 0.5;
-  }
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+
+  color: #08153e;
+
+  opacity: 0.5;
+}
+
+.input-text:focus {
+  outline: none;
 }
 </style>
