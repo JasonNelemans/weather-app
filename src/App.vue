@@ -9,13 +9,15 @@ import Dashboard from '@/components/Dashboard.vue'
 
 export default {
   components: {
-    Dashboard
-  }
+    Dashboard,
+  },
 }
 </script>
 
 <style lang="scss">
-#app {
+html,
+body {
   font-family: 'Poppins', sans-serif;
+  margin: 0;
 }
 </style>
