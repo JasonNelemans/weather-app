@@ -11,6 +11,14 @@ export default {
   methods: {
     ...mapActions('countries', ['fetchCountries']),
   },
+  computed: {
+    ...mapState('countries', ['countries']),
+  },
+  watch: {
+    countries() {
+      console.log('this countries: ', this.countries)
+    },
+  },
 }
 </script>
 
