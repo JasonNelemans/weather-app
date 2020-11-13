@@ -48,11 +48,13 @@
   align-items: center;
 
   color: #08153e;
-
-  opacity: 0.5;
 }
 
 .input-text:focus {
   outline: none;
+}
+
+.input-text::placeholder {
+  opacity: 0.5;
 }
 </style>
