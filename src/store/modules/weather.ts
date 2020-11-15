@@ -12,15 +12,16 @@ const state = initialState();
 const actions = {
   async fetchWeather({commit, dispatch, state}: any, {city, country}: any) {
     if(!city || !country) {
-      console.log('Please provide country and city')
+      dispatch('appState/error', null, { root: true})
       return
     } else {
       try {
+        dispatch('appState/loading', null, { root: true})
         const response = await axios.get(
           `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&country=${country}&key=${key}&days=10`
         )
         if(response.data.length === 0) {
-          console.log('There was an error with the response')
+          dispatch('appState/error', null, { root: true})
         } else {
           const tenDayForecast = response.data.data.map((day: any) => {
             return {
@@ -34,12 +35,13 @@ const actions = {
             tenDayForecast
           })
           commit('updateCity', city)
+          dispatch('appState/appOk', null, { root: true })
         }
       } catch (error) {
         console.log('error: ', error)
       }
     }
-    console.log('Finished fetching.')
+    dispatch('appState/doneLoading')
   }
 }
 
@@ -53,7 +55,6 @@ const mutations = {
 }
 
 const getters = {
-
 }
 
 export default {
