@@ -12,16 +12,24 @@
       alt="magnifier"
       class="icon magnifier"
       v-bind:style="{ opacity: this.city && 1 }"
+      @click="fetchWeather({ city, country })"
     />
   </div>
 </template>
 
 <script lang="ts">
+import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
   data() {
     return {
       city: '',
     }
+  },
+  computed: {
+    ...mapState('countries', ['country']),
+  },
+  methods: {
+    ...mapActions('weather', ['fetchWeather']),
   },
 }
 </script>
