@@ -16,7 +16,6 @@ const actions = {
           )
         })
         commit("updateCountries", newCountries)
-        // console.log('mapped country: ', newCountries)
       })
       .catch(error => console.log("error: ", error))
   }
