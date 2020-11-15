@@ -1,15 +1,23 @@
 <template>
   <div class="dashboard">
     <WeatherBar />
+    <WeatherData v-if="forecastedCity" />
   </div>
 </template>
 
 <script lang="ts">
+import { mapState } from 'vuex'
+
 import WeatherBar from '@/components/WeatherBar.vue'
+import WeatherData from '@/components/WeatherData.vue'
 
 export default {
   components: {
     WeatherBar,
+    WeatherData,
+  },
+  computed: {
+    ...mapState('weather', ['forecastedCity']),
   },
 }
 </script>

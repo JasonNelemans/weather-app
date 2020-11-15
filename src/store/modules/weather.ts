@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const initialState = () => ({
-  tenDayForecast: []
+  tenDayForecast: [],
+  forecastedCity: ''
 })
 
 const key = ''
@@ -32,6 +33,7 @@ const actions = {
           commit('updateForecast', {
             tenDayForecast
           })
+          commit('updateCity', city)
         }
       } catch (error) {
         console.log('error: ', error)
@@ -44,7 +46,14 @@ const actions = {
 const mutations = {
   updateForecast(state: any, payload: any) {
     state.tenDayForecast = payload.tenDayForecast
+  },
+  updateCity(state: any, payload: any) {
+    state.forecastedCity = payload
   }
+}
+
+const getters = {
+
 }
 
 export default {
