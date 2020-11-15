@@ -6,6 +6,7 @@
       required
       class="input-text"
     />
+    <img src="../assets/magnifier.png" alt="magnifier" class="icon magnifier" />
   </div>
 </template>
 
@@ -54,6 +55,18 @@
 }
 
 .input-text::placeholder {
+  opacity: 0.5;
+}
+
+.icon {
+  position: absolute;
+  width: 17.41px;
+  height: 19.41px;
+  left: 392px;
+  top: 14px;
+}
+
+.magnifier {
   opacity: 0.5;
 }
 </style>
