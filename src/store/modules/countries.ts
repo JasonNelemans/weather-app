@@ -1,9 +1,11 @@
 const initialState = () => ({
   countries: [],
-  countriesApiUrl: "https://restcountries.eu/rest/v2/all"
+  countriesApiUrl: "https://restcountries.eu/rest/v2/all",
+  country: 'NL'
 });
 
 const state = initialState();
+
 
 const actions = {
   fetchCountries({commit, dispatch, state}: any) {
@@ -24,6 +26,9 @@ const actions = {
 const mutations = {
   updateCountries(state: any, payload: any) {
     state.countries = payload
+  },
+  updateCountry(state: any, payload: any) {
+    state.country = payload
   }
 }
 

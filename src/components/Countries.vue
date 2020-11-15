@@ -35,11 +35,10 @@
 </template>
 
 <script lang="ts">
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
   data() {
     return {
-      selectedLocal: 'NL',
       selectedCountry: '',
       selectedFlag: '',
       dropMenuIsOpen: false,
@@ -50,9 +49,10 @@ export default {
   },
   methods: {
     ...mapActions('countries', ['fetchCountries']),
-    findCountry() {
+    ...mapMutations('countries', ['updateCountry']),
+    findCountryAndFlag() {
       this.countries.find((country: any) => {
-        if (country.code === this.selectedLocal) {
+        if (country.code === this.country) {
           this.selectedCountry = country.code
           this.selectedFlag = country.flag
         }
@@ -62,17 +62,15 @@ export default {
       this.selectedFlag = flag
       this.selectedCountry = country
       this.dropMenuIsOpen = false
+      this.updateCountry(country)
     },
   },
   computed: {
-    ...mapState('countries', ['countries']),
+    ...mapState('countries', ['countries', 'country']),
   },
   watch: {
     countries() {
-      this.findCountry()
-    },
-    selectedLocal() {
-      this.findCountry()
+      this.findCountryAndFlag()
     },
   },
 }
@@ -96,7 +94,7 @@ export default {
   width: 18px;
   height: 14px;
   left: 15px;
-  top: 17px;
+  top: 16.5px;
 
   background: #08153e;
   border: 1px solid #08153e;
