@@ -9,12 +9,24 @@
     <div class="country">
       <b>{{ selectedCountry }}</b>
     </div>
-    <svg viewBox="0 0 1030 638" class="down-icon">
+    <svg viewBox="0 0 1030 638" class="down-icon" @click="isOpen = !isOpen">
       <path
         d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z"
         fill="#000000"
       ></path>
     </svg>
+    <transition name="fade" appear>
+      <nav>
+        <div class="sub-menu" v-if="isOpen">
+          <div v-for="(country, i) in countries" :key="i" class="menu-item">
+            <p>
+              <img :src="country.flag" width="18px" height="14px" />
+              <b>{{ country.code }}</b>
+            </p>
+          </div>
+        </div>
+      </nav>
+    </transition>
   </div>
 </template>
 
@@ -26,6 +38,7 @@ export default {
       selectedLocal: 'NL',
       selectedCountry: '',
       selectedFlag: '',
+      isOpen: false,
     }
   },
   mounted() {
@@ -106,5 +119,39 @@ export default {
   top: 21.2px;
   opacity: 0.4;
   cursor: pointer;
+}
+
+.sub-menu {
+  overflow: scroll;
+  height: 250px;
+  position: absolute;
+  background-color: #fff;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  overflow-x: hidden;
+}
+
+.menu-item {
+  b {
+    margin-left: 5px;
+  }
+
+  img {
+    background: #08153e;
+    border: 1px solid #08153e;
+    box-sizing: border-box;
+    border-radius: 3px;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease-out;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
