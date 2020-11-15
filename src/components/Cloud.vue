@@ -1,5 +1,5 @@
 <template>
-  <div class="cloud"></div>
+  <img src="../assets/cloud.png" alt="cloud" class="cloud" />
 </template>
 
 <style lang="scss">
@@ -9,6 +9,5 @@
   height: 48px;
   top: 22px;
   left: 22px;
-  border: 1px solid black;
 }
 </style>
