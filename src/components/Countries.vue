@@ -9,7 +9,11 @@
     <div class="country">
       <b>{{ selectedCountry }}</b>
     </div>
-    <svg viewBox="0 0 1030 638" class="down-icon" @click="isOpen = !isOpen">
+    <svg
+      viewBox="0 0 1030 638"
+      class="down-icon"
+      @click="dropMenuIsOpen = !dropMenuIsOpen"
+    >
       <path
         d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z"
         fill="#000000"
@@ -17,9 +21,9 @@
     </svg>
     <transition name="fade" appear>
       <nav>
-        <div class="sub-menu" v-if="isOpen">
+        <div class="sub-menu" v-if="dropMenuIsOpen">
           <div v-for="(country, i) in countries" :key="i" class="menu-item">
-            <p>
+            <p @click="userSelected(country.flag, country.code)">
               <img :src="country.flag" width="18px" height="14px" />
               <b>{{ country.code }}</b>
             </p>
@@ -38,7 +42,7 @@ export default {
       selectedLocal: 'NL',
       selectedCountry: '',
       selectedFlag: '',
-      isOpen: false,
+      dropMenuIsOpen: false,
     }
   },
   mounted() {
@@ -53,6 +57,11 @@ export default {
           this.selectedFlag = country.flag
         }
       })
+    },
+    userSelected(flag: string, country: string) {
+      this.selectedFlag = flag
+      this.selectedCountry = country
+      this.dropMenuIsOpen = false
     },
   },
   computed: {
@@ -134,6 +143,7 @@ export default {
 }
 
 .menu-item {
+  cursor: pointer;
   b {
     margin-left: 5px;
   }
