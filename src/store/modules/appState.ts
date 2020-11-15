@@ -15,7 +15,7 @@ const actions = {
   error({ commit }: any) {
     commit('error')
   },
-  appStatus({ commit }: any) {
+  appOk({ commit }: any) {
     commit('appOk')
   }
 }

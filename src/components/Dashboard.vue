@@ -1,7 +1,11 @@
 <template>
   <div class="dashboard">
-    <WeatherBar />
-    <WeatherData v-if="forecastedCity" />
+    <WeatherBar
+      v-bind:class="{
+        withResults: forecastedCity && appStatus === 'ok',
+      }"
+    />
+    <WeatherData v-if="forecastedCity && appStatus === 'ok'" />
   </div>
 </template>
 
@@ -18,6 +22,7 @@ export default {
   },
   computed: {
     ...mapState('weather', ['forecastedCity']),
+    ...mapState('appState', ['appStatus']),
   },
 }
 </script>
@@ -51,5 +56,9 @@ export default {
       #ffc178 96.44%,
       #fe9255 111.85%
     );
+}
+
+.withResults {
+  top: 23.13%;
 }
 </style>

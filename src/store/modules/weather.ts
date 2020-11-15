@@ -10,7 +10,7 @@ const key = ''
 const state = initialState();
 
 const actions = {
-  async fetchWeather({commit, dispatch, state}: any, {city, country}: any) {
+  async fetchWeather({commit, dispatch }: any, {city, country}: any) {
     if(!city || !country) {
       dispatch('appState/error', null, { root: true})
       return
@@ -41,7 +41,7 @@ const actions = {
         console.log('error: ', error)
       }
     }
-    dispatch('appState/doneLoading')
+    dispatch('appState/doneLoading', null, { root: true})
   }
 }
 
