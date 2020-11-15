@@ -1,4 +1,5 @@
 const initialState = () => ({
+  tenDayForecast: []
 })
 
 const key = ''
