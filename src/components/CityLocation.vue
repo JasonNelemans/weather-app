@@ -5,10 +5,26 @@
       placeholder="Please enter your location..."
       required
       class="input-text"
+      v-model="city"
     />
-    <img src="../assets/magnifier.png" alt="magnifier" class="icon magnifier" />
+    <img
+      src="../assets/magnifier.png"
+      alt="magnifier"
+      class="icon magnifier"
+      v-bind:style="{ opacity: this.city && 1 }"
+    />
   </div>
 </template>
+
+<script lang="ts">
+export default {
+  data() {
+    return {
+      city: '',
+    }
+  },
+}
+</script>
 
 <style lang="scss">
 .city-location {
@@ -60,10 +76,10 @@
 
 .icon {
   position: absolute;
-  width: 17.41px;
-  height: 19.41px;
-  left: 392px;
-  top: 14px;
+  width: 25px;
+  height: 25px;
+  left: 391px;
+  top: 13px;
 }
 
 .magnifier {
