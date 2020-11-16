@@ -1,4 +1,5 @@
 import axios from 'axios'
+import moment from 'moment'
 
 import { weatherModel } from '@/types/weatherTypes'
 
@@ -73,6 +74,20 @@ const getters = {
   },
   sevenDayForecast: (state: weatherModel) => {
     return state.tenDayForecast.slice(0, 7)
+  },
+  getDates: (state: weatherModel, getters: any) => {
+    if (state.forecastedCity) {
+      const allMonths = getters.sevenDayForecast.map((day: { date: string}) => {
+        return moment(day.date).format('MMM')
+      })
+      const allYears = getters.sevenDayForecast.map((day: { date: string}) => {
+        return moment(day.date).format('YYYY')
+      })
+      const month = allMonths[0] === allMonths[6] ? allMonths[0] : `${allMonths[0]} - ${allMonths[6]}`
+      const date = `${moment(getters.sevenDayForecast[0].date).format('D')} - ${moment(getters.sevenDayForecast[6].date).format('D')}`
+      const year = allYears[0] === allYears[6] ? allYears[0] : `${allYears[0]} - ${allYears[6]}`
+      return `${month} ${date} ${year}`
+    }
   }
 }
 
