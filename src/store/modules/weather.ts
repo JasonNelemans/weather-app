@@ -1,7 +1,16 @@
 import axios from 'axios'
 
+import { weatherModel } from '@/types/weatherTypes'
+
 const initialState = () => ({
-  tenDayForecast: [],
+  tenDayForecast: [
+    {
+      minTemp: 0,
+      maxTemp: 0, 
+      averageTemp: 0,
+      date: ''
+    }
+  ],
   forecastedCity: ''
 })
 
@@ -55,11 +64,22 @@ const mutations = {
 }
 
 const getters = {
+  averageTempTenDays: (state: weatherModel) => {
+    return Math.round(
+      state.tenDayForecast
+        .map(day => day.averageTemp)
+        .reduce((acc, cur) => (cur += acc)) / 10
+    )
+  },
+  sevenDayForecast: (state: weatherModel) => {
+    return state.tenDayForecast.slice(0, 7)
+  }
 }
 
 export default {
   namespaced: true,
   state,
   actions,
-  mutations
+  mutations,
+  getters
 }
