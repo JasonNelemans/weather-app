@@ -1,4 +1,4 @@
-# weather-app
+# Weather App
 
 A weather app project in Vue + TypeScript
 
