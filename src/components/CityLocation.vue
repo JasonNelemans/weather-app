@@ -6,6 +6,7 @@
       required
       class="input-text"
       v-model="city"
+      v-on:keyup.enter="fetchWeather({ city, country })"
     />
     <img
       v-if="!appLoading"
