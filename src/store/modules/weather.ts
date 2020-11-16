@@ -56,7 +56,7 @@ const actions = {
 };
 
 const mutations = {
-  updateForecast(state: WeatherModel, { payload }: any) {
+  updateForecast(state: WeatherModel, payload: any) {
     state.tenDayForecast = payload.tenDayForecast;
   },
   updateCity(state: WeatherModel, payload: any) {
