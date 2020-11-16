@@ -5,7 +5,7 @@ const initialState = () => ({
   forecastedCity: ''
 })
 
-const key = ''
+const key = process.env.VUE_APP_API_KEY
 
 const state = initialState();
 

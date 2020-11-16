@@ -18,6 +18,7 @@ const actions = {
           )
         })
         commit("updateCountries", newCountries)
+        commit("sortCountries")
       })
       .catch(error => console.log("error: ", error))
   }
@@ -29,6 +30,17 @@ const mutations = {
   },
   updateCountry(state: any, payload: any) {
     state.country = payload
+  },
+  sortCountries(state: any) {
+    state.countries.sort((a: any, b: any) => {
+      if (a.code < b.code) {
+        return -1
+      }
+      if (b.code < a.code) {
+        return 1
+      }
+      return 0
+    })
   }
 }
 

@@ -138,6 +138,7 @@ export default {
   transform: translateX(-50%);
   width: max-content;
   overflow-x: hidden;
+  z-index: 1;
 }
 
 .menu-item {
