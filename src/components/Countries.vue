@@ -35,46 +35,46 @@
 </template>
 
 <script lang="ts">
-import { mapState, mapActions, mapMutations } from 'vuex'
-import Component from 'vue-class-component'
-import Vue from 'vue'
-import { Watch } from 'vue-property-decorator'
+import { mapState, mapActions, mapMutations } from "vuex";
+import Component from "vue-class-component";
+import Vue from "vue";
+import { Watch } from "vue-property-decorator";
 
-import { Country } from '@/types/CountryTypes'
+import { Country } from "@/types/CountryTypes";
 
 @Component({
   mounted() {
-    this.$store.dispatch('countries/fetchCountries')
+    this.$store.dispatch("countries/fetchCountries");
   },
   computed: {
-    ...mapState('countries', ['countries', 'country']),
-  },
+    ...mapState("countries", ["countries", "country"])
+  }
 })
 export default class Countries extends Vue {
-  selectedCountry = ''
-  selectedFlag = ''
-  dropMenuIsOpen = false
-  countries: any
-  country: string | undefined
+  selectedCountry = "";
+  selectedFlag = "";
+  dropMenuIsOpen = false;
+  countries: any;
+  country: string | undefined;
 
   findCountryAndFlag() {
     this.countries.find((country: Country) => {
       if (country.code === this.country) {
-        this.selectedCountry = country.code
-        this.selectedFlag = country.flag
+        this.selectedCountry = country.code;
+        this.selectedFlag = country.flag;
       }
-    })
+    });
   }
 
   userSelected(flag: string, country: string) {
-    this.selectedFlag = flag
-    this.selectedCountry = country
-    this.dropMenuIsOpen = false
-    this.$store.commit('countries/updateCountry', country)
+    this.selectedFlag = flag;
+    this.selectedCountry = country;
+    this.dropMenuIsOpen = false;
+    this.$store.commit("countries/updateCountry", country);
   }
 
-  @Watch('countries') renderFlag() {
-    this.findCountryAndFlag()
+  @Watch("countries") renderFlag() {
+    this.findCountryAndFlag();
   }
 }
 </script>
