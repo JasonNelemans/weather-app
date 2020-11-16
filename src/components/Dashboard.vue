@@ -1,5 +1,13 @@
 <template>
-  <div class="dashboard">
+  <div
+    class="dashboard"
+    v-bind:class="{
+      defaultBackground: !forecastedCity || appStatus === 'error',
+    }"
+    v-bind:style="{
+      background: forecastedCity && appStatus === 'ok' ? dynamicColor : null,
+    }"
+  >
     <WeatherBar
       v-bind:class="{
         withResults:
@@ -14,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 import WeatherBar from '@/components/WeatherBar.vue'
 import WeatherData from '@/components/WeatherData.vue'
@@ -27,6 +35,7 @@ export default {
   computed: {
     ...mapState('weather', ['forecastedCity']),
     ...mapState('appState', ['appStatus']),
+    ...mapGetters('weather', ['dynamicColor']),
   },
 }
 </script>
@@ -41,7 +50,9 @@ export default {
   height: 100%;
   width: 100%;
   position: absolute;
+}
 
+.defaultBackground {
   background: linear-gradient(
       0deg,
       rgba(255, 255, 255, 0.8),

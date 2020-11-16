@@ -88,6 +88,23 @@ const getters = {
       const year = allYears[0] === allYears[6] ? allYears[0] : `${allYears[0]} - ${allYears[6]}`
       return `${month} ${date} ${year}`
     }
+  },
+  dynamicColor: (state: any, getters: any) => {
+    const colors: any = {
+      '-40': '#102F7E',
+      '-30': '#0C8DD6',
+      '-20': '#1AA0EC',
+      '-10': '#60C6FF',
+      '0': '#9bdbff',
+      '10': '#b4deda',
+      '20': '#ffd66b',
+      '30': '#ffc178',
+      '40': '#fe9255'
+    }
+    const calculated: any = (
+      Math.round(getters.averageTempTenDays / 10) * 10
+    ).toString()
+    return `linear-gradient(145.74deg,#9BDBFF -33.02%,#B4DEDA 52.01%,${colors[calculated]} 137.04%)`
   }
 }
 
