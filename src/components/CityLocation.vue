@@ -8,11 +8,18 @@
       v-model="city"
     />
     <img
+      v-if="!appLoading"
       src="../assets/magnifier.png"
       alt="magnifier"
       class="icon magnifier"
       v-bind:style="{ opacity: this.city && 1 }"
       @click="fetchWeather({ city, country })"
+    />
+    <img
+      v-if="appLoading"
+      src="../assets/loading.png"
+      alt="loading"
+      class="icon loading"
     />
   </div>
 </template>
@@ -27,6 +34,7 @@ export default {
   },
   computed: {
     ...mapState('countries', ['country']),
+    ...mapState('appState', ['appLoading']),
   },
   methods: {
     ...mapActions('weather', ['fetchWeather']),
@@ -92,5 +100,34 @@ export default {
 
 .magnifier {
   opacity: 0.5;
+}
+
+.loading {
+  animation: 2s linear infinite spin;
+}
+
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

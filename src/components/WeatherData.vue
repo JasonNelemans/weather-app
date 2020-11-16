@@ -121,5 +121,6 @@ export default {
   font-size: 14px;
   position: absolute;
   top: 10%;
+  left: 110%;
 }
 </style>
