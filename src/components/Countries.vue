@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState } from "vuex";
 import Component from "vue-class-component";
 import Vue from "vue";
 import { Watch } from "vue-property-decorator";
