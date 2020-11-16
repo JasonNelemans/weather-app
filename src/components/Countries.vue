@@ -88,8 +88,8 @@ export default class Countries extends Vue {
     this.dropMenuIsOpen = false;
     if (this.userInput.length === 2) {
       this.findCountryAndFlag(this.userInput.toUpperCase());
-    } 
-    this.userInput = ""
+    }
+    this.userInput = "";
   }
 
   @Watch("countries") renderFlag() {
