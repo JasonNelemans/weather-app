@@ -2,10 +2,14 @@
   <div class="dashboard">
     <WeatherBar
       v-bind:class="{
-        withResults: forecastedCity && appStatus === 'ok',
+        withResults:
+          (forecastedCity && appStatus === 'ok') || appStatus === 'error',
       }"
     />
     <WeatherData v-if="forecastedCity && appStatus === 'ok'" />
+    <h2 v-if="appStatus === 'error'" class="error-message">
+      Unable to find data, please double check input
+    </h2>
   </div>
 </template>
 
@@ -30,14 +34,13 @@ export default {
 <style lang="scss">
 .dashboard {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   height: 100%;
   width: 100%;
   position: absolute;
-  left: 0px;
-  top: 0px;
 
   background: linear-gradient(
       0deg,
@@ -60,5 +63,10 @@ export default {
 
 .withResults {
   top: 23.13%;
+}
+
+.error-message {
+  color: #08153e;
+  opacity: 0.8;
 }
 </style>
