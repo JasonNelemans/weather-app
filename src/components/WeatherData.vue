@@ -9,7 +9,7 @@
       <div v-for="day in sevenDayForecast" :key="day.date">
         <div class="weekday-container">
           <p class="weekday">
-            {{ getDayName(day.date, 'en-US').toUpperCase() }}
+            {{ getDayName(day.date, "en-US").toUpperCase() }}
           </p>
           <p class="weekday-temp white">
             {{ day.averageTemp }}
@@ -22,29 +22,29 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'WeatherData',
+  name: "WeatherData",
   computed: {
-    ...mapGetters('weather', [
-      'getDates',
-      'averageTempTenDays',
-      'sevenDayForecast',
-    ]),
+    ...mapGetters("weather", [
+      "getDates",
+      "averageTempTenDays",
+      "sevenDayForecast"
+    ])
   },
   methods: {
     getDayName(dateStr: any, locale: any) {
-      const date = new Date(dateStr)
-      return date.toLocaleDateString(locale, { weekday: 'long' })
-    },
-  },
-}
+      const date = new Date(dateStr);
+      return date.toLocaleDateString(locale, { weekday: "long" });
+    }
+  }
+};
 </script>
 
 <style lang="scss">
 .weather-data {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   position: absolute;

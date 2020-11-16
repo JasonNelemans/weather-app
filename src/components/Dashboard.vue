@@ -2,16 +2,16 @@
   <div
     class="dashboard"
     v-bind:class="{
-      defaultBackground: !forecastedCity || appStatus === 'error',
+      defaultBackground: !forecastedCity || appStatus === 'error'
     }"
     v-bind:style="{
-      background: forecastedCity && appStatus === 'ok' ? dynamicColor : null,
+      background: forecastedCity && appStatus === 'ok' ? dynamicColor : null
     }"
   >
     <WeatherBar
       v-bind:class="{
         withResults:
-          (forecastedCity && appStatus === 'ok') || appStatus === 'error',
+          (forecastedCity && appStatus === 'ok') || appStatus === 'error'
       }"
     />
     <WeatherData v-if="forecastedCity && appStatus === 'ok'" />
@@ -22,22 +22,22 @@
 </template>
 
 <script lang="ts">
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState } from "vuex";
 
-import WeatherBar from '@/components/WeatherBar.vue'
-import WeatherData from '@/components/WeatherData.vue'
+import WeatherBar from "@/components/WeatherBar.vue";
+import WeatherData from "@/components/WeatherData.vue";
 
 export default {
   components: {
     WeatherBar,
-    WeatherData,
+    WeatherData
   },
   computed: {
-    ...mapState('weather', ['forecastedCity']),
-    ...mapState('appState', ['appStatus']),
-    ...mapGetters('weather', ['dynamicColor']),
-  },
-}
+    ...mapState("weather", ["forecastedCity"]),
+    ...mapState("appState", ["appStatus"]),
+    ...mapGetters("weather", ["dynamicColor"])
+  }
+};
 </script>
 
 <style lang="scss">

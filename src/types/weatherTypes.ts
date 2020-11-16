@@ -1,9 +1,9 @@
-export interface weatherModel {
+export interface WeatherModel {
   tenDayForecast: {
-    minTemp: number
-    maxTemp: number
-    averageTemp: number
-    date: string  
-  }[]
-  forecastedCity: string
+    minTemp: number;
+    maxTemp: number;
+    averageTemp: number;
+    date: string;
+  }[];
+  forecastedCity: string;
 }

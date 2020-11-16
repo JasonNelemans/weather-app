@@ -35,45 +35,45 @@
 </template>
 
 <script lang="ts">
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      selectedCountry: '',
-      selectedFlag: '',
-      dropMenuIsOpen: false,
-    }
+      selectedCountry: "",
+      selectedFlag: "",
+      dropMenuIsOpen: false
+    };
   },
   mounted() {
-    this.fetchCountries()
+    this.fetchCountries();
   },
   methods: {
-    ...mapActions('countries', ['fetchCountries']),
-    ...mapMutations('countries', ['updateCountry']),
+    ...mapActions("countries", ["fetchCountries"]),
+    ...mapMutations("countries", ["updateCountry"]),
     findCountryAndFlag() {
       this.countries.find((country: any) => {
         if (country.code === this.country) {
-          this.selectedCountry = country.code
-          this.selectedFlag = country.flag
+          this.selectedCountry = country.code;
+          this.selectedFlag = country.flag;
         }
-      })
+      });
     },
     userSelected(flag: string, country: string) {
-      this.selectedFlag = flag
-      this.selectedCountry = country
-      this.dropMenuIsOpen = false
-      this.updateCountry(country)
-    },
+      this.selectedFlag = flag;
+      this.selectedCountry = country;
+      this.dropMenuIsOpen = false;
+      this.updateCountry(country);
+    }
   },
   computed: {
-    ...mapState('countries', ['countries', 'country']),
+    ...mapState("countries", ["countries", "country"])
   },
   watch: {
     countries() {
-      this.findCountryAndFlag()
-    },
-  },
-}
+      this.findCountryAndFlag();
+    }
+  }
+};
 </script>
 
 <style lang="scss">

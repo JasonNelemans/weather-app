@@ -25,21 +25,21 @@
 </template>
 
 <script lang="ts">
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      city: '',
-    }
+      city: ""
+    };
   },
   computed: {
-    ...mapState('countries', ['country']),
-    ...mapState('appState', ['appLoading']),
+    ...mapState("countries", ["country"]),
+    ...mapState("appState", ["appLoading"])
   },
   methods: {
-    ...mapActions('weather', ['fetchWeather']),
-  },
-}
+    ...mapActions("weather", ["fetchWeather"])
+  }
+};
 </script>
 
 <style lang="scss">
@@ -71,7 +71,7 @@ export default {
   left: 17px;
   top: 9px;
 
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;

@@ -7,16 +7,16 @@
 </template>
 
 <script lang="ts">
-import Cloud from '@/components/Cloud.vue'
-import Countries from '@/components/Countries.vue'
-import CityLocation from '@/components/CityLocation.vue'
+import Cloud from "@/components/Cloud.vue";
+import Countries from "@/components/Countries.vue";
+import CityLocation from "@/components/CityLocation.vue";
 export default {
   components: {
     Cloud,
     Countries,
-    CityLocation,
-  },
-}
+    CityLocation
+  }
+};
 </script>
 
 <style lang="scss">

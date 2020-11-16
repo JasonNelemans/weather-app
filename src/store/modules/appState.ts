@@ -1,43 +1,43 @@
 const initialState = () => ({
   appLoading: false,
-  appStatus: 'ok'
-})
+  appStatus: "ok"
+});
 
-const state = initialState()
+const state = initialState();
 
 const actions = {
   loading({ commit }: any) {
-    commit('loading')
+    commit("loading");
   },
   doneLoading({ commit }: any) {
-    commit('doneLoading')
+    commit("doneLoading");
   },
   error({ commit }: any) {
-    commit('error')
+    commit("error");
   },
   appOk({ commit }: any) {
-    commit('appOk')
+    commit("appOk");
   }
-}
+};
 
 const mutations = {
   loading(state: any) {
-    state.appLoading = true
+    state.appLoading = true;
   },
   doneLoading(state: any) {
-    state.appLoading = false
+    state.appLoading = false;
   },
   error(state: any) {
-    state.appStatus = 'error'
+    state.appStatus = "error";
   },
   appOk(state: any) {
-    state.appStatus = 'ok'
+    state.appStatus = "ok";
   }
-}
+};
 
 export default {
   namespaced: true,
   state,
   actions,
   mutations
-}
+};
