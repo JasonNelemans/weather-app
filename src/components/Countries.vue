@@ -35,45 +35,48 @@
 </template>
 
 <script lang="ts">
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapActions, mapMutations } from 'vuex'
+
+import { Country } from '@/types/CountryTypes'
+
 export default {
-  data() {
+  data(): any {
     return {
-      selectedCountry: "",
-      selectedFlag: "",
-      dropMenuIsOpen: false
-    };
-  },
-  mounted() {
-    this.fetchCountries();
-  },
-  methods: {
-    ...mapActions("countries", ["fetchCountries"]),
-    ...mapMutations("countries", ["updateCountry"]),
-    findCountryAndFlag() {
-      this.countries.find((country: any) => {
-        if (country.code === this.country) {
-          this.selectedCountry = country.code;
-          this.selectedFlag = country.flag;
-        }
-      });
-    },
-    userSelected(flag: string, country: string) {
-      this.selectedFlag = flag;
-      this.selectedCountry = country;
-      this.dropMenuIsOpen = false;
-      this.updateCountry(country);
+      selectedCountry: '' as string,
+      selectedFlag: '' as string,
+      dropMenuIsOpen: false as boolean,
     }
   },
+  mounted(): any {
+    this.fetchCountries()
+  },
+  methods: {
+    ...mapActions('countries', ['fetchCountries']),
+    ...mapMutations('countries', ['updateCountry']),
+    findCountryAndFlag() {
+      this.countries.find((country: Country) => {
+        if (country.code === this.country) {
+          this.selectedCountry = country.code
+          this.selectedFlag = country.flag
+        }
+      })
+    },
+    userSelected(flag: string, country: string) {
+      this.selectedFlag = flag
+      this.selectedCountry = country
+      this.dropMenuIsOpen = false
+      this.updateCountry(country)
+    },
+  },
   computed: {
-    ...mapState("countries", ["countries", "country"])
+    ...mapState('countries', ['countries', 'country']),
   },
   watch: {
     countries() {
-      this.findCountryAndFlag();
-    }
-  }
-};
+      this.findCountryAndFlag()
+    },
+  },
+}
 </script>
 
 <style lang="scss">

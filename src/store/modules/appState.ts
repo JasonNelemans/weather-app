@@ -1,9 +1,11 @@
+import { AppTypes } from '@/types/AppTypes'
+
 const initialState = () => ({
   appLoading: false,
   appStatus: "ok"
 });
 
-const state = initialState();
+const state: AppTypes = initialState();
 
 const actions = {
   loading({ commit }: any) {
@@ -21,16 +23,16 @@ const actions = {
 };
 
 const mutations = {
-  loading(state: any) {
+  loading(state: AppTypes) {
     state.appLoading = true;
   },
-  doneLoading(state: any) {
+  doneLoading(state: AppTypes) {
     state.appLoading = false;
   },
-  error(state: any) {
+  error(state: AppTypes) {
     state.appStatus = "error";
   },
-  appOk(state: any) {
+  appOk(state: AppTypes) {
     state.appStatus = "ok";
   }
 };

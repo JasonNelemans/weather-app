@@ -1,7 +1,7 @@
 import axios from "axios";
 import moment from "moment";
 
-import { weatherModel } from "@/types/weatherTypes";
+import { WeatherModel, Colours } from "@/types/weatherTypes";
 
 const initialState = () => ({
   tenDayForecast: [
@@ -17,10 +17,10 @@ const initialState = () => ({
 
 const key = process.env.VUE_APP_API_KEY;
 
-const state = initialState();
+const state: WeatherModel = initialState();
 
 const actions = {
-  async fetchWeather({ commit, dispatch }: any, { city, country }: any) {
+  async fetchWeather({ commit, dispatch }: any, { city, country }: { city: string, country: string}) {
     if (!city || !country) {
       dispatch("appState/error", null, { root: true });
       return;
@@ -56,26 +56,26 @@ const actions = {
 };
 
 const mutations = {
-  updateForecast(state: any, payload: any) {
+  updateForecast(state: WeatherModel, { payload }: any) {
     state.tenDayForecast = payload.tenDayForecast;
   },
-  updateCity(state: any, payload: any) {
+  updateCity(state: WeatherModel, payload: any) {
     state.forecastedCity = payload;
   }
 };
 
 const getters = {
-  averageTempTenDays: (state: weatherModel) => {
+  averageTempTenDays: (state: WeatherModel) => {
     return Math.round(
       state.tenDayForecast
         .map(day => day.averageTemp)
         .reduce((acc, cur) => (cur += acc)) / 10
     );
   },
-  sevenDayForecast: (state: weatherModel) => {
+  sevenDayForecast: (state: WeatherModel) => {
     return state.tenDayForecast.slice(0, 7);
   },
-  getDates: (state: weatherModel, getters: any) => {
+  getDates: (state: WeatherModel, getters: any) => {
     if (state.forecastedCity) {
       const allMonths = getters.sevenDayForecast.map(
         (day: { date: string }) => {
@@ -99,8 +99,8 @@ const getters = {
       return `${month} ${date} ${year}`;
     }
   },
-  dynamicColor: (state: any, getters: any) => {
-    const colors: any = {
+  dynamicColor: (state: WeatherModel, getters: any) => {
+    const colors: Colours = {
       "-40": "#102F7E",
       "-30": "#0C8DD6",
       "-20": "#1AA0EC",
@@ -111,7 +111,7 @@ const getters = {
       "30": "#ffc178",
       "40": "#fe9255"
     };
-    const calculated: any = (
+    const calculated: keyof Colours = (
       Math.round(getters.averageTempTenDays / 10) * 10
     ).toString();
     return `linear-gradient(145.74deg,#9BDBFF -33.02%,#B4DEDA 52.01%,${colors[calculated]} 137.04%)`;

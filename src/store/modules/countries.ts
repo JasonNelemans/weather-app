@@ -1,13 +1,20 @@
+import { CountryStateTypes, Country } from '@/types/CountryTypes'
+
 const initialState = () => ({
-  countries: [],
+  countries: [
+    {
+      code: '',
+      flag: ''
+    }
+  ],
   countriesApiUrl: "https://restcountries.eu/rest/v2/all",
   country: "NL"
 });
 
-const state = initialState();
+const state: CountryStateTypes = initialState();
 
 const actions = {
-  fetchCountries({ commit, dispatch, state }: any) {
+  fetchCountries({ commit, state }: any) {
     fetch(state.countriesApiUrl, { method: "get" })
       .then(response => response.json())
       .then(countries => {
@@ -22,14 +29,14 @@ const actions = {
 };
 
 const mutations = {
-  updateCountries(state: any, payload: any) {
+  updateCountries(state: CountryStateTypes, payload: Country[]) {
     state.countries = payload;
   },
-  updateCountry(state: any, payload: any) {
+  updateCountry(state: CountryStateTypes, payload: string) {
     state.country = payload;
   },
-  sortCountries(state: any) {
-    state.countries.sort((a: any, b: any) => {
+  sortCountries(state: CountryStateTypes) {
+    state.countries.sort((a: Country, b: Country) => {
       if (a.code < b.code) {
         return -1;
       }
