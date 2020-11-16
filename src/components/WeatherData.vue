@@ -5,6 +5,19 @@
       {{ averageTempTenDays }}
     </p>
     <span class="degrees white">°C</span>
+    <div class="weekdays">
+      <div v-for="day in sevenDayForecast" :key="day.date">
+        <div class="weekday-container">
+          <p class="weekday">
+            {{ getDayName(day.date, 'en-US').toUpperCase() }}
+          </p>
+          <p class="weekday-temp white">
+            {{ day.averageTemp }}
+            <span class="weekday-degrees white">°C</span>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -14,7 +27,17 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'WeatherData',
   computed: {
-    ...mapGetters('weather', ['getDates', 'averageTempTenDays']),
+    ...mapGetters('weather', [
+      'getDates',
+      'averageTempTenDays',
+      'sevenDayForecast',
+    ]),
+  },
+  methods: {
+    getDayName(dateStr: any, locale: any) {
+      const date = new Date(dateStr)
+      return date.toLocaleDateString(locale, { weekday: 'long' })
+    },
   },
 }
 </script>
@@ -26,6 +49,10 @@ export default {
   font-weight: 600;
   position: absolute;
   top: 42%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .date-range {
@@ -58,5 +85,41 @@ export default {
 
 .white {
   color: #fff;
+}
+
+.weekdays {
+  position: absolute;
+  top: 800%;
+  right: -220%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 600px;
+}
+
+.weekday {
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 0.06em;
+  margin: 0;
+  margin-right: 10px;
+
+  color: #08153e;
+
+  opacity: 0.6;
+  position: absolute;
+}
+
+.weekday-temp {
+  font-size: 24px;
+  height: 24px;
+  position: absolute;
+  margin-left: 18px;
+}
+
+.weekday-degrees {
+  font-size: 14px;
+  position: absolute;
+  top: 10%;
 }
 </style>
