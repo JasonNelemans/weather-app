@@ -2,6 +2,8 @@
 
 A weather app project in Vue + TypeScript
 
+See it live [here](https://inspiring-fermi-78026d.netlify.app/)
+
 ## Project setup
 
 ```
