@@ -20,7 +20,10 @@ const key = process.env.VUE_APP_API_KEY;
 const state: WeatherModel = initialState();
 
 const actions = {
-  async fetchWeather({ commit, dispatch }: any, { city, country }: { city: string, country: string}) {
+  async fetchWeather(
+    { commit, dispatch }: any,
+    { city, country }: { city: string; country: string }
+  ) {
     if (!city || !country) {
       dispatch("appState/error", null, { root: true });
       return;

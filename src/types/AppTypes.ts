@@ -1,4 +1,4 @@
 export interface AppTypes {
-  appLoading: boolean
-  appStatus: string
+  appLoading: boolean;
+  appStatus: string;
 }

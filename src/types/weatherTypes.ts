@@ -4,7 +4,7 @@ export interface WeatherModel {
 }
 
 export interface Colours {
-  [key: string]: string
+  [key: string]: string;
 }
 
 export interface TenDayForeCast {

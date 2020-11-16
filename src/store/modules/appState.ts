@@ -1,4 +1,4 @@
-import { AppTypes } from '@/types/AppTypes'
+import { AppTypes } from "@/types/AppTypes";
 
 const initialState = () => ({
   appLoading: false,

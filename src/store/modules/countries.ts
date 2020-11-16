@@ -1,10 +1,10 @@
-import { CountryStateTypes, Country } from '@/types/CountryTypes'
+import { CountryStateTypes, Country } from "@/types/CountryTypes";
 
 const initialState = () => ({
   countries: [
     {
-      code: '',
-      flag: ''
+      code: "",
+      flag: ""
     }
   ],
   countriesApiUrl: "https://restcountries.eu/rest/v2/all",
