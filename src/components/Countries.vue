@@ -7,12 +7,19 @@
       v-if="selectedFlag"
     />
     <div class="country">
-      <b>{{ selectedCountry }}</b>
+      <b @click="inputIsOpen = true">{{ selectedCountry }}</b>
     </div>
+    <input
+      type="text"
+      v-model="userInput"
+      class="country-input"
+      v-if="inputIsOpen"
+      v-on:keyup.enter="keyUpHandler"
+    />
     <svg
       viewBox="0 0 1030 638"
       class="down-icon"
-      @click="dropMenuIsOpen = !dropMenuIsOpen"
+      @click="(dropMenuIsOpen = !dropMenuIsOpen), (inputIsOpen = false)"
     >
       <path
         d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z"
@@ -35,10 +42,10 @@
 </template>
 
 <script lang="ts">
-import { mapState } from "vuex";
-import Component from "vue-class-component";
 import Vue from "vue";
+import Component from "vue-class-component";
 import { Watch } from "vue-property-decorator";
+import { mapState } from "vuex";
 
 import { Country } from "@/types/CountryTypes";
 
@@ -54,14 +61,17 @@ export default class Countries extends Vue {
   selectedCountry = "";
   selectedFlag = "";
   dropMenuIsOpen = false;
+  userInput = "";
+  inputIsOpen = false;
   countries: any;
   country: string | undefined;
 
-  findCountryAndFlag() {
+  findCountryAndFlag(countryArg: any) {
     this.countries.find((country: Country) => {
-      if (country.code === this.country) {
+      if (country.code === countryArg) {
         this.selectedCountry = country.code;
         this.selectedFlag = country.flag;
+        this.$store.commit("countries/updateCountry", country.code);
       }
     });
   }
@@ -73,8 +83,17 @@ export default class Countries extends Vue {
     this.$store.commit("countries/updateCountry", country);
   }
 
+  keyUpHandler() {
+    this.inputIsOpen = false;
+    this.dropMenuIsOpen = false;
+    if (this.userInput.length === 2) {
+      this.findCountryAndFlag(this.userInput.toUpperCase());
+    } 
+    this.userInput = ""
+  }
+
   @Watch("countries") renderFlag() {
-    this.findCountryAndFlag();
+    this.findCountryAndFlag(this.country);
   }
 }
 </script>
@@ -120,6 +139,23 @@ export default class Countries extends Vue {
   align-items: center;
 
   color: #08153e;
+}
+
+.country-input {
+  position: relative;
+  z-index: 1;
+  margin-left: 15px;
+  width: 45px;
+  height: 44px;
+  border: none;
+}
+
+.country-input:focus {
+  outline: none;
+}
+
+.country-input:focus-within {
+  border: 2px solid #b5c7ff;
 }
 
 .down-icon {
